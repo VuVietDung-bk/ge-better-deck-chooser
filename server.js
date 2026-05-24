@@ -30,20 +30,25 @@ const SUN_PRODUCERS = new Set([
   'sunshroom',
   'sunbean',
   'solarsage',
-  'goldbloom'
+  'goldbloom',
+  'enlightenmint',
+  'plantern',
+  'shinevine',
+  'solartomato',
+  'moonflower'
 ]);
 
 const AERIAL_PLANTS = new Set([
   'asparagus',
   'caulipower',
-  'floawerPot',
+  'floawerpot',
   'ghostpepper',
   'moonbean',
   'enlightenmint',
   'pineapple',
   'rotobaga',
   'skyshooter',
-  'solarsage',
+  'solarsage'
 ]);
 
 const WORLD_RULES = {
@@ -59,10 +64,10 @@ const WORLD_RULES = {
   eighties: 'Neon Mixtape Tour',
   dino: 'Jurassic Marsh',
   modern: 'Modern Day',
-  kongfu: 'Kung Fu World',
-  sky: 'Sky City',
+  kongfu: 'Kongfu Temple',
+  sky: 'Aerial Fortress',
   water: 'Big Wave Beach',
-  market: 'Market',
+  market: 'Shop',
   epic: 'Epic',
   mint: 'Mint'
 };
@@ -139,10 +144,11 @@ function buildCatalog(objects, lookup, featureLookup) {
       const family = String(data.Family || 'Unknown');
       const sunCost = Number(data.SunCost || 0);
       const imageFile = resolveImageFile(slug, lookup);
+      const normalizedSlug = slug.toLowerCase();
       const isMint = /mint$/i.test(slug) || String(feature?.OBTAINWORLD || '').toLowerCase() === 'mint';
       const isAquatic = inferAquatic(slug, world);
-      const isAerial = AERIAL_PLANTS.has(slug);
-      const isSunProducer = SUN_PRODUCERS.has(slug.toLowerCase()) || family.toLowerCase() === 'sun';
+      const isAerial = AERIAL_PLANTS.has(normalizedSlug);
+      const isSunProducer = SUN_PRODUCERS.has(normalizedSlug);
 
       return {
         id: slug,

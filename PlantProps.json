@@ -4205,63 +4205,6 @@
     {
       "objclass": "PlantProperties",
       "aliases": [
-        "zombiepotion_speed"
-      ],
-      "objdata": {
-        "CannotBePushedByFootballMech": true,
-        "CannotBeSheepenedByWizard": true,
-        "CannotBeDetectedByCatapult": true,
-        "MaxEnchantLevel": 3,
-        "Cooldown": 0.01,
-        "CooldownFrom": 1,
-        "SunCost": 0,
-        "BeghouledCost": 0,
-        "Toughness": 1,
-        "Family": "Nope",
-        "ImmuneToIceblock": true
-      }
-    },
-    {
-      "objclass": "PlantProperties",
-      "aliases": [
-        "zombiepotion_toughness"
-      ],
-      "objdata": {
-        "CannotBePushedByFootballMech": true,
-        "CannotBeSheepenedByWizard": true,
-        "CannotBeDetectedByCatapult": true,
-        "MaxEnchantLevel": 3,
-        "Cooldown": 0.01,
-        "CooldownFrom": 1,
-        "SunCost": 0,
-        "BeghouledCost": 0,
-        "Toughness": 1,
-        "Family": "Nope",
-        "ImmuneToIceblock": true
-      }
-    },
-    {
-      "objclass": "PlantProperties",
-      "aliases": [
-        "zombiepotion_invisibility"
-      ],
-      "objdata": {
-        "CannotBePushedByFootballMech": true,
-        "CannotBeSheepenedByWizard": true,
-        "CannotBeDetectedByCatapult": true,
-        "MaxEnchantLevel": 1,
-        "Cooldown": 0.01,
-        "CooldownFrom": 1,
-        "SunCost": 0,
-        "BeghouledCost": 0,
-        "Toughness": 1,
-        "Family": "Nope",
-        "ImmuneToIceblock": true
-      }
-    },
-    {
-      "objclass": "PlantProperties",
-      "aliases": [
         "tanglekelp"
       ],
       "objdata": {

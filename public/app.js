@@ -7,6 +7,213 @@
   const MIN_CATALOG_COLUMNS = 5;
   const MAX_CATALOG_COLUMNS = 10;
   const DEFAULT_CATALOG_COLUMNS = 6;
+  const ORIGINAL_ORDER = [
+    'sunflower',
+    'peashooter',
+    'wallnut',
+    'potatomine',
+    'cabbagepult',
+    'bloomerang',
+    'iceburg',
+    'gravebuster',
+    'twinsunflower',
+    'bonkchoy',
+    'repeater',
+    'iceweed',
+    'snowdrop',
+    'squash',
+    'dandelion',
+    'pvine',
+    'kernelpult',
+    'snapdragon',
+    'spikeweed',
+    'coconutcannon',
+    'cherry_bomb',
+    'springbean',
+    'spikerock',
+    'threepeater',
+    'buttercup',
+    'splitpea',
+    'chilibean',
+    'lightningreed',
+    'tallnut',
+    'jalapeno',
+    'peapod',
+    'melonpult',
+    'wintermelon',
+    'imitater',
+    'electricpeashooter',
+    'sapfling',
+    'electriccurrant',
+    'marigold',
+    'marigold_red',
+    'marigold_orange',
+    'marigold_yellow',
+    'marigold_green',
+    'marigold_blue',
+    'marigold_pink',
+    'marigold_purple',
+    'laser_bean',
+    'blover',
+    'citron',
+    'empea',
+    'starfruit',
+    'pinkstarfruit',
+    'shootingstarfruit',
+    'holonut',
+    'magnifyinggrass',
+    'powerplant',
+    'powerplant_alpha',
+    'powerplant_beta',
+    'powerplant_gamma',
+    'powerplant_delta',
+    'powerplant_epsilon',
+    'applemortar',
+    'solartomato',
+    'pumpkin',
+    'hollyknight',
+    'hollybarrierleaf',
+    'hollybarrierleafplantfood',
+    'gumnut',
+    'hypnoshroom',
+    'sunshroom',
+    'puffshroom',
+    'fumeshroom',
+    'sunbean',
+    'peanut',
+    'magnetshroom',
+    'scaredyshroom',
+    'plantern',
+    'vamporcini',
+    'glaciershroom',
+    'doomshroom',
+    'lilypad',
+    'tanglekelp',
+    'bowlingbulb',
+    'tool_projectile_bowlingbulb1',
+    'tool_projectile_bowlingbulb2',
+    'tool_projectile_bowlingbulb3',
+    'tool_projectile_bowlingbulb_explode',
+    'tool_projectile_bowlingbulb_iceburg',
+    'tool_projectile_bowling_wallnut',
+    'tool_projectile_bowling_explodeonut',
+    'tool_projectile_bowling_holonut',
+    'tool_projectile_bowling_primalwallnut',
+    'tool_projectile_bowling_tallnut',
+    'homingthistle',
+    'guacodile',
+    'banana',
+    'seashroom',
+    'chomper',
+    'missiletoe',
+    'seashooter',
+    'ghostpepper',
+    'parsnip',
+    'icebloom',
+    'hurrikale',
+    'hotpotato',
+    'pepperpult',
+    'chardguard',
+    'firepeashooter',
+    'stunion',
+    'xshot',
+    'pyrevine',
+    'jackolantern',
+    'sweetpotato',
+    'hotdate',
+    'gatling',
+    'megagatling',
+    'torchwood',
+    'lavaguava',
+    'redstinger',
+    'akee',
+    'endurian',
+    'toadstool',
+    'stallia',
+    'goldleaf',
+    'zoybeanpod',
+    'aloe',
+    'shinevine',
+    'firegourd',
+    'snowpea',
+    'bambooshoot',
+    'turnip',
+    'peach',
+    'powerlily',
+    'lychee',
+    'solarsage',
+    'cantaloupe',
+    'bamboozle',
+    'bamboobusket',
+    'atombomb_seedling',
+    'atombomb',
+    'seedling',
+    'strawburst',
+    'cactus',
+    'phatbeet',
+    'phatbeet_rhythm',
+    'celerystalker',
+    'thymewarp',
+    'electricblueberry',
+    'garlic',
+    'sporeshroom',
+    'intensivecarrot',
+    'caulipower',
+    'bloominghearts',
+    'grapeshot',
+    'primalpeashooter',
+    'primalwallnut',
+    'perfumeshroom',
+    'coldsnapdragon',
+    'primalsunflower',
+    'primalpotatomine',
+    'shrinkingviolet',
+    'meteorflower',
+    'explodeonut',
+    'skyshooter',
+    'pineapple',
+    'moonbean',
+    'anthurium',
+    'asparagus',
+    'floawerPot',
+    'moonflower',
+    'nightshade',
+    'shadowshroom',
+    'dusklobber',
+    'grimrose',
+    'goldbloom',
+    'escaperoot',
+    'murkadamia',
+    'shadowpeashooter',
+    'noctarine',
+    'gloomvine',
+    'gloomshroom',
+    'umbrellaleaf',
+    'snappea',
+    'cranjelly',
+    'dragonbruit',
+    'appeasemint',
+    'enlightenmint',
+    'reinforcemint',
+    'bombardmint',
+    'armamint',
+    'spearmint',
+    'wintermint',
+    'enforcemint',
+    'peppermint',
+    'ailmint',
+    'filamint',
+    'enchantmint',
+    'concealmint',
+    'containmint'
+  ];
+  const SORT_OPTIONS = [
+    { value: 'original', label: 'Original order' },
+    { value: 'name', label: 'A-Z' },
+    { value: 'sun-asc', label: 'Sun cost (low to high)' },
+    { value: 'sun-desc', label: 'Sun cost (high to low)' }
+  ];
+  const SORT_VALUES = new Set(SORT_OPTIONS.map((option) => option.value));
   const STORAGE_KEY = 'pvzge-randomizer-state-v1';
   const STATE_VERSION = 1;
 
@@ -47,7 +254,8 @@
     if (!bootstrap) {
       return e('div', { className: 'screen' },
         e('div', { className: 'panel loading-panel' },
-          e('h1', null, 'Gardendless Seed Chooser But Better')
+          e('h1', null, 'Gardendless Seed Chooser But Better'),
+          e('h2', null, 'Loading data...')
         )
       );
     }
@@ -88,6 +296,8 @@
     const activeDeckIds = useMemo(() => deck.slice(0, settings.slotCount).filter(Boolean), [deck, settings.slotCount]);
     const selectedSet = useMemo(() => new Set(activeDeckIds), [activeDeckIds]);
 
+    const originalOrder = useMemo(() => buildOriginalOrderMap(ORIGINAL_ORDER), []);
+
     const filteredPlants = useMemo(() => {
       const query = normalize(search);
       return bootstrap.plants.filter((plant) => {
@@ -97,15 +307,41 @@
       });
     }, [bootstrap.plants, search]);
 
+    const sortedPlants = useMemo(() => {
+      const mode = settings.sortMode || 'original';
+      if (mode === 'original') {
+        if (!originalOrder.size) return filteredPlants;
+        const indexed = filteredPlants.map((plant, index) => {
+          const key = String(plant.id || '').toLowerCase();
+          const order = originalOrder.get(key);
+          return { plant, order: order ?? Number.POSITIVE_INFINITY, index };
+        });
+        indexed.sort((a, b) => (a.order - b.order) || (a.index - b.index));
+        return indexed.map((entry) => entry.plant);
+      }
+
+      const items = filteredPlants.slice();
+      if (mode === 'name') {
+        return items.sort((a, b) => a.name.localeCompare(b.name, 'en'));
+      }
+      if (mode === 'sun-asc') {
+        return items.sort((a, b) => (a.sunCost - b.sunCost) || a.name.localeCompare(b.name, 'en'));
+      }
+      if (mode === 'sun-desc') {
+        return items.sort((a, b) => (b.sunCost - a.sunCost) || a.name.localeCompare(b.name, 'en'));
+      }
+      return filteredPlants;
+    }, [filteredPlants, originalOrder, settings.sortMode]);
+
     const visiblePlants = useMemo(() => {
-      return filteredPlants.flatMap((plant) => {
+      return sortedPlants.flatMap((plant) => {
         const status = getPlantStatus(plant, settings, activeDeckIds);
         if (settings.hideUnavailable && status.blocked && !status.selected) {
           return [];
         }
         return [{ plant, status }];
       });
-    }, [filteredPlants, settings, activeDeckIds]);
+    }, [sortedPlants, settings, activeDeckIds]);
 
     const eligibleForRandom = useMemo(() => {
       return bootstrap.plants.filter((plant) => isSelectableBySettings(plant, settings));
@@ -214,10 +450,10 @@
 
     return e('div', { className: 'app-shell' },
       e('header', { className: 'topbar' },
-        e('div', { className: 'brand' },
-          e('div', { className: 'brand-badge' }, 'PvZ'),
-          e('div', null,
-            e('h1', null, 'Gardendless Seed Chooser But Better'),
+        e('a', { className: 'brand', href: 'https://pvzge.com/en/', target: '_blank', rel: 'noopener noreferrer' },
+          e('img', { className: 'brand-logo', src: '/images/pvzg_nav.webp', alt: 'PvZ Gardendless' }),
+          e('div', { className: 'brand-text' },
+            e('h1', null, 'Seed Chooser But Better')
           )
         ),
         e('div', { className: 'topbar-stats' },
@@ -323,6 +559,16 @@
               onToggle: (value) => toggleSetItem('worlds', value),
               onSelectAll: () => updateSettings({ worlds: worldOptions.slice() }),
               onClearAll: () => updateSettings({ worlds: [] })
+            })
+          }),
+
+          e(SettingsSection, {
+            title: 'Sort catalog',
+            helper: 'Choose one sort order',
+            children: e(SingleSelectGroup, {
+              value: settings.sortMode,
+              options: SORT_OPTIONS,
+              onChange: (value) => updateSettings({ sortMode: value })
             })
           }),
 
@@ -451,6 +697,7 @@
             e('span', { className: 'badge cost' }, `${plant.sunCost} sun`),
             plant.isMint ? e('span', { className: 'badge mint' }, 'Mint') : null,
             plant.isAquatic ? e('span', { className: 'badge aquatic' }, 'Aquatic') : null,
+            plant.isAerial ? e('span', { className: 'badge aerial' }, 'Aerial') : null,
             plant.isSunProducer ? e('span', { className: 'badge sun' }, 'Sun') : null
           ),
           status.reasons.length ? e('div', { className: 'plant-reason' }, status.reasons[0]) : null
@@ -494,6 +741,16 @@
           onClick: () => onToggle(option)
         }, option))
       )
+    );
+  }
+
+  function SingleSelectGroup({ value, options, onChange }) {
+    return e('div', { className: 'chip-grid' },
+      options.map((option) => e('button', {
+        key: option.value,
+        className: value === option.value ? 'chip active' : 'chip',
+        onClick: () => onChange(option.value)
+      }, option.label))
     );
   }
 
@@ -566,6 +823,7 @@
       showPlantInfo: true,
       hideUnavailable: false,
       catalogColumns: DEFAULT_CATALOG_COLUMNS,
+      sortMode: 'original',
       sunMin: 0,
       sunMax: 1000,
       requireSunProducer: false,
@@ -590,6 +848,7 @@
     const includeAerial = settings.includeAerial === undefined ? true : Boolean(settings.includeAerial);
     const showPlantInfo = settings.showPlantInfo === undefined ? true : Boolean(settings.showPlantInfo);
     const hideUnavailable = settings.hideUnavailable === undefined ? false : Boolean(settings.hideUnavailable);
+    const sortMode = SORT_VALUES.has(settings.sortMode) ? settings.sortMode : 'original';
 
     return {
       systems: Array.isArray(settings.systems) ? nextSystems : bootstrap.families.slice(),
@@ -600,6 +859,7 @@
       showPlantInfo,
       hideUnavailable,
       catalogColumns,
+      sortMode,
       sunMin,
       sunMax,
       requireSunProducer: Boolean(settings.requireSunProducer),
@@ -699,6 +959,18 @@
 
   function pickRandom(items) {
     return items[Math.floor(Math.random() * items.length)];
+  }
+
+  function buildOriginalOrderMap(order) {
+    const map = new Map();
+    if (!Array.isArray(order)) return map;
+    order.forEach((id, index) => {
+      const key = String(id || '').toLowerCase();
+      if (key && !map.has(key)) {
+        map.set(key, index);
+      }
+    });
+    return map;
   }
 
   function shuffle(items) {

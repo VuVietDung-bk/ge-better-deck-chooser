@@ -2324,7 +2324,7 @@
       "ID": 91,
       "_CARDSPRITENAME": "powerplant_alpha",
       "CODENAME": "powerplant_alpha",
-      "OBTAINWORLD": "future",
+      "OBTAINWORLD": "",
       "BOOST": 0,
       "COSTUME": 4,
       "ALMANAC": "RTID(powerplant_alpha@PlantAlmanac)",
@@ -2353,7 +2353,7 @@
       "_CARDSPRITENAME": "powerplant_beta",
       "CODENAME": "powerplant_beta",
       "BOOST": 0,
-      "OBTAINWORLD": "future",
+      "OBTAINWORLD": "",
       "COSTUME": 4,
       "ALMANAC": "RTID(powerplant_beta@PlantAlmanac)",
       "PROPS": "RTID(powerplant_beta@PlantProps)",
@@ -2381,7 +2381,7 @@
       "_CARDSPRITENAME": "powerplant_gamma",
       "CODENAME": "powerplant_gamma",
       "BOOST": 0,
-      "OBTAINWORLD": "future",
+      "OBTAINWORLD": "",
       "COSTUME": 4,
       "ALMANAC": "RTID(powerplant_gamma@PlantAlmanac)",
       "PROPS": "RTID(powerplant_gamma@PlantProps)",
@@ -2409,7 +2409,7 @@
       "_CARDSPRITENAME": "powerplant_delta",
       "CODENAME": "powerplant_delta",
       "BOOST": 0,
-      "OBTAINWORLD": "future",
+      "OBTAINWORLD": "",
       "COSTUME": 4,
       "ALMANAC": "RTID(powerplant_delta@PlantAlmanac)",
       "PROPS": "RTID(powerplant_delta@PlantProps)",
@@ -2437,7 +2437,7 @@
       "_CARDSPRITENAME": "powerplant_epsilon",
       "CODENAME": "powerplant_epsilon",
       "BOOST": 0,
-      "OBTAINWORLD": "future",
+      "OBTAINWORLD": "",
       "COSTUME": 4,
       "ALMANAC": "RTID(powerplant_epsilon@PlantAlmanac)",
       "PROPS": "RTID(powerplant_epsilon@PlantProps)",
@@ -2855,84 +2855,6 @@
       "RES": {
         "Disabled": "Peanut",
         "Plant": "Peanut"
-      }
-    },
-    {
-      "ID": 111,
-      "_CARDSPRITENAME": "potion_speed",
-      "CODENAME": "zombiepotion_speed",
-      "COSTUME": 0,
-      "OBTAINWORLD": "",
-      "BOOST": 0,
-      "ALMANAC": "RTID(zombiepotion_speed@PlantAlmanac)",
-      "PROPS": "RTID(zombiepotion_speed@PlantProps)",
-      "NAME": {
-        "en": "Potion of Speed",
-        "zh": "速度药水",
-        "es": "Poción de velocidad"
-      },
-      "TYPE": [
-        "potion"
-      ],
-      "ZENGARDEN": {
-        "FixedWeight": 0,
-        "PlantPlace": "dirt"
-      },
-      "RES": {
-        "Disabled": "PotionSpeed",
-        "Plant": "PotionSpeed"
-      }
-    },
-    {
-      "ID": 112,
-      "_CARDSPRITENAME": "potion_toughness",
-      "CODENAME": "zombiepotion_toughness",
-      "OBTAINWORLD": "",
-      "BOOST": 0,
-      "COSTUME": 0,
-      "ALMANAC": "RTID(zombiepotion_toughness@PlantAlmanac)",
-      "PROPS": "RTID(zombiepotion_toughness@PlantProps)",
-      "NAME": {
-        "en": "Potion of Toughness",
-        "zh": "健壮药水",
-        "es": "Poción de resistencia"
-      },
-      "TYPE": [
-        "potion"
-      ],
-      "ZENGARDEN": {
-        "FixedWeight": 0,
-        "PlantPlace": "dirt"
-      },
-      "RES": {
-        "Disabled": "PotionToughness",
-        "Plant": "PotionToughness"
-      }
-    },
-    {
-      "ID": 113,
-      "_CARDSPRITENAME": "potion_invisibility",
-      "CODENAME": "zombiepotion_invisibility",
-      "COSTUME": 0,
-      "OBTAINWORLD": "",
-      "BOOST": 0,
-      "ALMANAC": "RTID(zombiepotion_invisibility@PlantAlmanac)",
-      "PROPS": "RTID(zombiepotion_invisibility@PlantProps)",
-      "NAME": {
-        "en": "Potion of Invisibility",
-        "zh": "隐身药水",
-        "es": "Poción de invisibilidad"
-      },
-      "TYPE": [
-        "potion"
-      ],
-      "ZENGARDEN": {
-        "FixedWeight": 0,
-        "PlantPlace": "dirt"
-      },
-      "RES": {
-        "Disabled": "PotionInvisibility",
-        "Plant": "PotionInvisibility"
       }
     },
     {
@@ -5537,9 +5459,6 @@
     "vamporcini",
     "glaciershroom",
     "doomshroom",
-    "zombiepotion_speed",
-    "zombiepotion_toughness",
-    "zombiepotion_invisibility",
     "lilypad",
     "tanglekelp",
     "bowlingbulb",
