@@ -5,6 +5,7 @@
   "description": "PvZ Gardendless deck randomizer web app",
   "main": "server.js",
   "scripts": {
+    "build": "node scripts/build.js",
     "start": "node server.js"
   }
 }

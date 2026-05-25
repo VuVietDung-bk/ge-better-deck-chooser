@@ -99,7 +99,7 @@ const server = http.createServer((req, res) => {
   const url = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
   const pathname = decodeURIComponent(url.pathname);
 
-  if (pathname === '/api/bootstrap') {
+  if (pathname === '/api/bootstrap' || pathname === '/bootstrap.json') {
     return sendJson(res, bootstrap);
   }
 
@@ -128,9 +128,13 @@ const server = http.createServer((req, res) => {
   res.end('Not found');
 });
 
-server.listen(PORT, () => {
-  console.log(`GE Seed Chooser But Better running at http://localhost:${PORT}`);
-});
+if (require.main === module) {
+  server.listen(PORT, () => {
+    console.log(`GE Seed Chooser But Better running at http://localhost:${PORT}`);
+  });
+}
+
+module.exports = { bootstrap };
 
 function buildCatalog(objects, lookup, featureLookup) {
   return objects
