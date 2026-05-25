@@ -814,9 +814,10 @@
   }
 
   function createDefaultSettings(bootstrap) {
+    const defaultWorlds = bootstrap.worlds.filter((world) => world !== 'Unknown');
     return {
       systems: bootstrap.families.slice(),
-      worlds: bootstrap.worlds.slice(),
+      worlds: defaultWorlds.length ? defaultWorlds : bootstrap.worlds.slice(),
       includeMint: true,
       includeAquatic: true,
       includeAerial: true,
@@ -834,6 +835,7 @@
   function sanitizeSettings(settings, bootstrap) {
     const nextSystems = Array.isArray(settings.systems) ? settings.systems.filter((item) => bootstrap.families.includes(item)) : [];
     const nextWorlds = Array.isArray(settings.worlds) ? settings.worlds.filter((item) => bootstrap.worlds.includes(item)) : [];
+    const defaultWorlds = bootstrap.worlds.filter((world) => world !== 'Unknown');
     const slotCount = clamp(Number(settings.slotCount) || MAX_SLOTS, 1, MAX_SLOTS);
     const catalogColumns = clamp(Number(settings.catalogColumns) || DEFAULT_CATALOG_COLUMNS, MIN_CATALOG_COLUMNS, MAX_CATALOG_COLUMNS);
     let sunMin = clamp(Number(settings.sunMin) || 0, 0, 1000);
@@ -852,7 +854,9 @@
 
     return {
       systems: Array.isArray(settings.systems) ? nextSystems : bootstrap.families.slice(),
-      worlds: Array.isArray(settings.worlds) ? nextWorlds : bootstrap.worlds.slice(),
+      worlds: Array.isArray(settings.worlds)
+        ? (nextWorlds.length ? nextWorlds : (defaultWorlds.length ? defaultWorlds : bootstrap.worlds.slice()))
+        : (defaultWorlds.length ? defaultWorlds : bootstrap.worlds.slice()),
       includeMint: Boolean(settings.includeMint),
       includeAquatic: Boolean(settings.includeAquatic),
       includeAerial,
