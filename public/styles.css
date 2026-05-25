@@ -198,6 +198,11 @@ button {
   background: rgba(255, 255, 255, 0.04);
 }
 
+.tiny-btn.active {
+  background: rgba(108, 183, 255, 0.22);
+  border-color: rgba(108, 183, 255, 0.65);
+}
+
 .action-btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
@@ -359,6 +364,12 @@ button {
 
 .catalog-header {
   align-items: center;
+}
+
+.catalog-actions {
+  display: grid;
+  gap: 8px;
+  justify-items: end;
 }
 
 .search-box {

@@ -614,6 +614,11 @@
                 label: 'Hide unavailable plants',
                 checked: settings.hideUnavailable,
                 onChange: (checked) => updateSettings({ hideUnavailable: checked })
+              }),
+              e(ToggleRow, {
+                label: 'Invert availability',
+                checked: settings.invertAvailability,
+                onChange: (checked) => updateSettings({ invertAvailability: checked })
               })
             )
           }),
@@ -823,6 +828,7 @@
       includeAerial: true,
       showPlantInfo: true,
       hideUnavailable: false,
+      invertAvailability: false,
       catalogColumns: DEFAULT_CATALOG_COLUMNS,
       sortMode: 'original',
       sunMin: 0,
@@ -850,6 +856,7 @@
     const includeAerial = settings.includeAerial === undefined ? true : Boolean(settings.includeAerial);
     const showPlantInfo = settings.showPlantInfo === undefined ? true : Boolean(settings.showPlantInfo);
     const hideUnavailable = settings.hideUnavailable === undefined ? false : Boolean(settings.hideUnavailable);
+    const invertAvailability = settings.invertAvailability === undefined ? false : Boolean(settings.invertAvailability);
     const sortMode = SORT_VALUES.has(settings.sortMode) ? settings.sortMode : 'original';
 
     return {
@@ -862,6 +869,7 @@
       includeAerial,
       showPlantInfo,
       hideUnavailable,
+      invertAvailability,
       catalogColumns,
       sortMode,
       sunMin,
@@ -871,7 +879,7 @@
     };
   }
 
-  function isSelectableBySettings(plant, settings) {
+  function isAvailableByFilters(plant, settings) {
     if (!settings.systems.includes(plant.family)) return false;
     if (!settings.worlds.includes(plant.world)) return false;
     if (!settings.includeMint && plant.isMint) return false;
@@ -882,16 +890,26 @@
     return true;
   }
 
+  function isSelectableBySettings(plant, settings) {
+    const available = isAvailableByFilters(plant, settings);
+    return settings.invertAvailability ? !available : available;
+  }
+
   function getPlantStatus(plant, settings, activeDeckIds) {
-    const reasons = [];
+    const baseReasons = [];
     const selected = activeDeckIds.includes(plant.id);
-    if (!settings.systems.includes(plant.family)) reasons.push('Family not selected');
-    if (!settings.worlds.includes(plant.world)) reasons.push('World not selected');
-    if (!settings.includeMint && plant.isMint) reasons.push('Mint is disabled');
-    if (!settings.includeAquatic && plant.isAquatic) reasons.push('Aquatic is disabled');
-    if (!settings.includeAerial && plant.isAerial) reasons.push('Aerial is disabled');
-    if (plant.sunCost < settings.sunMin) reasons.push(`Sun cost below ${settings.sunMin}`);
-    if (plant.sunCost > settings.sunMax) reasons.push(`Sun cost above ${settings.sunMax}`);
+    if (!settings.systems.includes(plant.family)) baseReasons.push('Family not selected');
+    if (!settings.worlds.includes(plant.world)) baseReasons.push('World not selected');
+    if (!settings.includeMint && plant.isMint) baseReasons.push('Mint is disabled');
+    if (!settings.includeAquatic && plant.isAquatic) baseReasons.push('Aquatic is disabled');
+    if (!settings.includeAerial && plant.isAerial) baseReasons.push('Aerial is disabled');
+    if (plant.sunCost < settings.sunMin) baseReasons.push(`Sun cost below ${settings.sunMin}`);
+    if (plant.sunCost > settings.sunMax) baseReasons.push(`Sun cost above ${settings.sunMax}`);
+
+    const baseAvailable = baseReasons.length === 0;
+    const inverted = Boolean(settings.invertAvailability);
+    const selectable = inverted ? !baseAvailable : baseAvailable;
+    const reasons = selectable ? [] : (inverted ? ['Excluded by invert'] : baseReasons);
 
     if (selected) {
       return { selected: true, blocked: reasons.length > 0, full: false, reasons };

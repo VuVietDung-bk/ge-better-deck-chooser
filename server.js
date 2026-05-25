@@ -46,7 +46,8 @@ const AERIAL_PLANTS = new Set([
   'moonbean',
   'enlightenmint',
   'pineapple',
-  'rotobaga',
+  'xshot',
+  'shootingstarfruit',
   'skyshooter',
   'solarsage'
 ]);
@@ -208,7 +209,7 @@ function inferWorldFromSlug(slug) {
 }
 
 function inferAquatic(slug, world) {
-  return /sea|lilypad|tanglekelp|guacodile|tallnut/.test(slug.toLowerCase());
+  return /sea|lilypad|tanglekelp|guacodile|tallnut|hollybarrierleaf/.test(slug.toLowerCase());
 }
 
 function prettyName(slug) {
